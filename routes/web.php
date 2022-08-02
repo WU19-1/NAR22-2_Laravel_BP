@@ -21,6 +21,8 @@ Route::post('/register', [\App\Http\Controllers\UserController::class, 'register
 Route::get('/', [\App\Http\Controllers\BookController::class, 'index']);
 Route::get('/book/{id}', [\App\Http\Controllers\BookController::class, 'detail']);
 Route::get('/about_us', function (){ return view('about_us'); });
+Route::get('/search', [\App\Http\Controllers\BookController::class, 'search']);
 
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index']);
-Route::get('/search', [\App\Http\Controllers\BookController::class, 'search']);
+Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'add']);
+Route::post('/delete_cart', [\App\Http\Controllers\CartController::class, 'delete']);

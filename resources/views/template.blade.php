@@ -54,13 +54,13 @@
             </form>
         </label>
         <div class="flex flex-row items-center my-auto gap-x-4 text-lg font-bold">
-            <a href="/about_us" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">About us</a>
             @if(auth()->check())
-                <a id="cart-container" href="" class="p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
+                <a id="cart-container" href="/cart" class="p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
                     <svg id="cart-svg" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                 </a>
+                <a href="/about_us" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">About us</a>
                 <form action="/logout" method="POST" class="h-full p-2 hover:rounded-lg hover:bg-secondary hover:text-white">
                     {{csrf_field()}}
                     <button>Logout</button>

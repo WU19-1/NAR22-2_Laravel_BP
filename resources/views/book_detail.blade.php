@@ -1,6 +1,15 @@
 @extends('template')
 
 @section('content')
+    @if($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 relative" role="alert" id="alertContainer">
+            <strong class="font-bold">Holy smokes!</strong>
+            <span class="block sm:inline">Something seriously bad happened.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-red-500 cursor-pointer" id="close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+            </span>
+        </div>
+    @endif
     <div class="flex flex-col mx-4 my-6">
         <div class="flex flex-row gap-4">
             <div class="flex justify-center">
@@ -59,7 +68,7 @@
                     </div>
                     @if(auth()->check() && auth()->user()->role == "user")
                         <hr>
-                        <form class="flex items-center justify-between select-none" action="" method="post">
+                        <form class="flex items-center justify-between select-none" action="/add_to_cart" method="post">
                             <h1 class="text-4xl font-bold" id="price">$ {{$book->price}}</h1>
                             <div class="gap-x-4 h-full flex flex-row">
                                 <div class="grid grid-cols-3 h-full w-40 shadow-sm rounded-md border gap-x-4 place-items-center">
@@ -68,6 +77,8 @@
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
                                         </svg>
                                     </div>
+
+                                    {{csrf_field()}}
 
                                     <span class="text-2xl" id="quantity">1</span>
                                     <input type="hidden" name="quantity" value="1" id="quantityInput">
@@ -179,6 +190,11 @@
                 quantityInput["value"] = parseInt(quantityInput["value"]) + 1
             })
         }
+
+        document.getElementById("close").addEventListener('click', () => {
+            document.getElementById("alertContainer").remove()
+        })
+
     </script>
     <style>
         input[type="number"]::-webkit-outer-spin-button,

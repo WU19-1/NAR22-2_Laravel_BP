@@ -9,7 +9,10 @@ class Cart extends Model
 {
     use HasFactory;
 
-    public function carts(){
-        return $this->hasMany(Book::class);
+    protected $guarded = [];
+    public $timestamps = false;
+
+    public function book(){
+        return $this->hasOne(Book::class, 'id', 'book_id');
     }
 }
