@@ -14,7 +14,7 @@ class TransactionDetail extends Migration
     public function up()
     {
         Schema::create('transaction_details', function (Blueprint $table) {
-            $table->unsignedInteger('transaction_id');
+            $table->uuid('transaction_id');
             $table->unsignedInteger('book_id');
             $table->primary(['transaction_id', 'book_id']);
             $table->unsignedInteger('quantity');

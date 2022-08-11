@@ -1,7 +1,7 @@
 from typing import final
 import mysql.connector
 
-con = mysql.connector.connect(host="localhost", database="elibookstore", user="root", password="")
+con = mysql.connector.connect(host="localhost", database="elisbookstore", user="root", password="")
 if con.is_connected():
     q_file = open("result.sql", "r")
     qs = q_file.readlines()
@@ -11,11 +11,14 @@ if con.is_connected():
             # print(q.rstrip())
             cur = con.cursor()
             cur.execute("{}".format(q))
-        except Exception as e:
-            print(e)
-            continue
+        except Exception:
+            pass
         # finally:
         #     input()
+    try:
+        cur.execute("UPDATE books SET publication_date = CURRENT_DATE - INTERVAL FLOOR(RAND() * 36500) DAY;");
+    except Exception:
+        pass
     con.commit()
     con.close()
 else:

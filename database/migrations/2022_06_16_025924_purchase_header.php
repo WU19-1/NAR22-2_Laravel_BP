@@ -13,15 +13,14 @@ class PurchaseHeader extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_headers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('vendor_id');
-            $table->foreign('vendor_id')->references('id')->on('vendors');
-            $table->unsignedInteger('staff_id');
-            $table->foreign('staff_id')->references('id')->on('users');
-            $table->dateTime('transaction_date');
-            $table->boolean('status');
-        });
+//        Schema::create('purchase_headers', function (Blueprint $table) {
+//            $table->uuid('id')->primary();
+//            $table->unsignedInteger('staff_id');
+//            $table->foreign('staff_id')->references('id')->on('users');
+//            $table->dateTime('transaction_date');
+//            $table->dateTime('arrived_at')->nullable();
+//            $table->string('status')->nullable();
+//        });
     }
 
     /**

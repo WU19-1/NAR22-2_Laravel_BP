@@ -24,7 +24,7 @@
         }
     </script>
     <style>
-        #cart-container:hover #cart-svg {
+        .header-hoverable:hover svg {
             stroke: white;
         }
         *::-webkit-scrollbar{
@@ -55,12 +55,32 @@
         </label>
         <div class="flex flex-row items-center my-auto gap-x-4 text-lg font-bold">
             @if(auth()->check())
-                <a id="cart-container" href="/cart" class="p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
-                    <svg id="cart-svg" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                @if(auth()->user()->role == "user")
+                    <a href="/cart" class="header-hoverable p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
+                        <svg id="cart-svg" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </a>
+                @elseif(auth()->user()->role == "admin")
+                    <a href="/admin/book/add" class="header-hoverable p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                    </a>
+                    <a href="/stock/order" class="header-hoverable p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </a>
+                @endif
+                <a href="/order" class="header-hoverable p-2 hover:rounded-lg hover:bg-secondary hover:stroke-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </a>
-                <a href="/about_us" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">About us</a>
+                <a href="/about_us" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">
+                    About us
+                </a>
                 <form action="/logout" method="POST" class="h-full p-2 hover:rounded-lg hover:bg-secondary hover:text-white">
                     {{csrf_field()}}
                     <button>Logout</button>

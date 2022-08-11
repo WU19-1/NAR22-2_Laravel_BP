@@ -13,12 +13,12 @@ class PurchaseDetail extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_details', function (Blueprint $table) {
-            $table->unsignedInteger('purchase_id');
-            $table->unsignedInteger('book_id');
-            $table->primary(['purchase_id', 'book_id']);
-            $table->unsignedInteger('quantity');
-        });
+//        Schema::create('purchase_details', function (Blueprint $table) {
+//            $table->uuid('purchase_id');
+//            $table->unsignedInteger('book_id');
+//            $table->primary(['purchase_id', 'book_id']);
+//            $table->unsignedInteger('quantity');
+//        });
     }
 
     /**

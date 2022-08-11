@@ -14,12 +14,14 @@ class TransactionHeader extends Migration
     public function up()
     {
         Schema::create('transaction_headers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('staff_id');
-            $table->foreign('staff_id')->references('id')->on('users');
+            $table->uuid('id')->unique();
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('transaction_date');
+            $table->string('status');
+            $table->string('proof');
+            $table->unsignedInteger('checked_by')->nullable(true);
+            $table->dateTime('checked_at')->nullable(true);
         });
     }
 
