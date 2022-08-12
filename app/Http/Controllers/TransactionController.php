@@ -40,7 +40,7 @@ class TransactionController extends Controller
     public function list(Request $request){
         $transactions = TransactionHeader::join('transaction_details', 'transaction_details.transaction_id', '=', 'transaction_headers.id')
 //            ->join('books', 'books.id', '=', 'transaction_details.book_id')
-            ->select(DB::raw('CAST(transaction_headers.id as varchar(40)) as tid'), 'user_id','transaction_date', 'status', 'proof', DB::raw('COUNT(*) as total_items'))
+            ->select(DB::raw('CONVERT(transaction_headers.id,varchar(max)) as tid'), 'user_id','transaction_date', 'status', 'proof', DB::raw('COUNT(*) as total_items'))
             ->groupBy('tid', 'user_id', 'transaction_date', 'status', 'proof')
             ->orderBy('transaction_date', 'DESC');
         if (auth()->user()->role != "admin"){
