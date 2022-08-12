@@ -144,7 +144,6 @@ class PurchaseController extends Controller
                 }
             }
         }
-
         return redirect()->back();
     }
 

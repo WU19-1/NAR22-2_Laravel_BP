@@ -115,7 +115,7 @@
                                     <input type="hidden" name="quantity" value="1" id="quantityInput">
                                     <input type="hidden" name="book_id" value="{{$book->id}}">
 
-                                    <div class="cursor-pointer border-l rounded h-full w-full flex justify-center items-center hover:bg-gray-200" id="increase">
+                                    <div class="cursor-pointer border-l rounded h-full w-full flex justify-center items-center hover:bg-gray-200" id="increaseStock">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                                         </svg>
@@ -165,6 +165,7 @@
         var increaseStock = document.getElementById("increaseStock")
         var decreaseStock = document.getElementById("decreaseStock")
         var quantityInput = document.getElementById("quantityInput")
+        var close = document.getElementById("close")
 
         if (increase != null){
             increase.addEventListener('click', () => {
@@ -173,6 +174,9 @@
                     quantity_input['value'] = qty.innerText
                 }
             })
+        }
+
+        if (decrease != null){
             decrease.addEventListener('click', () => {
                 if (qty.innerText !== "1"){
                     qty.innerHTML = parseInt(qty.innerHTML) - 1
@@ -182,19 +186,17 @@
         }
 
         if (increaseStock != null){
-            decreaseStock.addEventListener('click', () => {
-                if (quantityInput["value"] !== "1"){
-                    quantityInput["value"] = parseInt(quantityInput["value"]) - 1
-                }
-            })
             increaseStock.addEventListener('click', () => {
-                quantityInput["value"] = parseInt(quantityInput["value"]) + 1
+                qty.innerHTML = parseInt(qty.innerHTML) + 1
+                quantity_input['value'] = qty.innerText
             })
         }
 
-        document.getElementById("close").addEventListener('click', () => {
-            document.getElementById("alertContainer").remove()
-        })
+        if (close != null){
+            close.addEventListener('click', () => {
+                document.getElementById("alertContainer").remove()
+            })
+        }
 
     </script>
     <style>
