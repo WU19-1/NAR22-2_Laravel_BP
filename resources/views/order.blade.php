@@ -58,7 +58,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{$transaction->tid}}
+                                            {{$transaction->id}}
                                         </div>
                                     </div>
                                 </td>
@@ -95,7 +95,7 @@
                                 <td class="flex gap-4 px-6 py-4 whitespace-nowrap text-middle text-sm font-medium">
                                     <a
                                         class="text-indigo-600 hover:text-indigo-900 border py-2 px-4 rounded"
-                                        href="/order/{{$transaction->tid}}"
+                                        href="/order/{{$transaction->id}}"
                                     >
                                         Details
                                     </a>
@@ -119,12 +119,12 @@
                                         @if($transaction->proof != "")
                                         <form action="/order/approve" method="post">
                                             {{csrf_field()}}
-                                            <input type="hidden" name="tid" value="{{$transaction->tid}}">
+                                            <input type="hidden" name="tid" value="{{$transaction->id}}">
                                             <button class="text-green-600 hover:text-green-900 border py-2 px-4 rounded">Approve</button>
                                         </form>
                                         <form action="/order/reject" method="post">
                                             {{csrf_field()}}
-                                            <input type="hidden" name="tid" value="{{$transaction->tid}}">
+                                            <input type="hidden" name="tid" value="{{$transaction->id}}">
                                             <button class="text-red-600 hover:text-red-900 border py-2 px-4 rounded">Reject</button>
                                         </form>
                                         @endif
