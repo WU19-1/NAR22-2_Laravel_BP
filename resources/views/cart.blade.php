@@ -53,7 +53,7 @@
                                 <span>$ </span>
                                 <span>{{$item->book->price}}</span>
                             </div>
-                            <div class="col-span-1"><input type="number" id="{{$item->input_id}}" value="{{$item->quantity}}" max="{{$item->book->stock}}" class="detail w-1/2 p-2 border rounded"></div>
+                            <div class="col-span-1"><input type="number" id="{{$item->input_id}}" value="{{$item->quantity}}" min="1" max="{{$item->book->stock}}" class="detail w-1/2 p-2 border rounded"></div>
                             <div class="col-span-1" id="{{$item->input_id}}_subtotal">
                                 <span>$ </span>
                                 <span class="subtotals">{{$item->book->price * $item->quantity}}</span>

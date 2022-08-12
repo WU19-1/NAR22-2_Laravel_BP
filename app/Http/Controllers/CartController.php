@@ -37,11 +37,24 @@ class CartController extends Controller
             return redirect()->back()->withErrors("Book doesn't have enough stock");
         }
 
-        Cart::create([
-            'user_id' => auth()->user()->id,
-            'book_id' => $request->book_id,
-            'quantity' => $request->quantity
-        ]);
+        $cart = Cart::where('user_id', '=', auth()->user()->id)
+            ->where('book_id', '=', $request->book_id)->first();
+
+        if ($cart != null){
+            if ($cart->quantity + $request->quantity <= $book_stock){
+//                $cart->quantity += $request->quantity;
+                Cart::where('user_id', '=', auth()->user()->id)
+                    ->where('book_id', '=', $request->book_id)->update(['quantity' => $cart->quantity + $request->quantity]);
+            } else {
+                return redirect()->back()->withErrors("Book doesn't have enough stock");
+            }
+        } else {
+            Cart::create([
+                'user_id' => auth()->user()->id,
+                'book_id' => $request->book_id,
+                'quantity' => $request->quantity
+            ]);
+        }
 
         return redirect()->back();
     }
