@@ -86,6 +86,9 @@
                     <button>Logout</button>
                 </form>
             @else
+                <a href="/about_us" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">
+                    About us
+                </a>
                 <a href="/login" class="p-2 hover:rounded-lg hover:bg-secondary hover:text-white">Login</a>
             @endif
         </div>
