@@ -24,7 +24,7 @@ class CartController extends Controller
     public function add(Request $request){
         $validator = Validator::make($request->all(), [
             'book_id' => 'required|numeric',
-            'quantity' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|gte:1',
         ]);
 
         if ($validator->fails()){
@@ -60,6 +60,8 @@ class CartController extends Controller
             $qty = $arr[1];
             if ($book->stock < $qty){
                 return redirect()->back()->withErrors(['Book with title "' . $book->title . '" does not have enough stock!']);
+            } else if ($qty == 0){
+                return redirect()->back()->withErrors(['Cannot order book with 0 quantity']);
             }
         }
         $uuid = (string) Str::uuid();

@@ -37,7 +37,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|unique:users|email',
             'password' => 'required|confirmed',
-            'password_confirmation' => 'required',
+            'password_confirmation' => 'required'
         ]);
 
 
